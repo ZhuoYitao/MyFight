@@ -1,0 +1,46 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainMenuActivity" >
+
+    <TextView
+        android:id="@+id/menu_title_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"
+        android:text="My Fight"
+        android:textSize="50sp" />
+
+    <TextView
+        android:id="@+id/menu_version_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/menu_title_tv"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="version-1.0"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/menu_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/menu_version_tv"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="初 入 红 尘"
+        android:textSize="40sp" />
+    
+    <Button
+        android:id="@+id/menu_continue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/menu_start"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:text="再 续 前 缘"
+        android:textSize="40sp" />
+
+</RelativeLayout>
