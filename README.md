@@ -1,4 +1,5 @@
 # MyFight
-这是一款简单的挂机游戏，进入游戏后角色会自动打怪升级。
+This is a simple Android game, when a player start the game, a role that represents the player will fight with monsters automatically.
 
-这个项目参考了另一个开源项目：https://github.com/boredream/FightWithoutEnd。
+## References
+- https://github.com/boredream/FightWithoutEnd
