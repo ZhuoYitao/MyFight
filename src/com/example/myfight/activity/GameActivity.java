@@ -167,7 +167,6 @@ public class GameActivity extends Activity implements OnClickListener{
 		default:
 			break;
 		}
-		
 	}
 	
 	/**
