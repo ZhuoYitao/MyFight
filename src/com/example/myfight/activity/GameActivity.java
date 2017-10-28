@@ -23,7 +23,7 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 public class GameActivity extends Activity implements OnClickListener{
-	// ÉùÃ÷¿Ø¼ş¶ÔÓ¦µÄ±äÁ¿
+	// å£°æ˜æ§ä»¶å¯¹åº”çš„å˜é‡
 	private ScrollView game_info_scroll;
 	private LinearLayout game_info_linearl;
 	
@@ -40,7 +40,7 @@ public class GameActivity extends Activity implements OnClickListener{
 	
 	private LinearLayout equipment_detail;
 	private TextView game_weapon;
-	private TextView game_armor; // ¿Ø¼ş±äÁ¿µÄÉùÃ÷µ½´Ë½áÊø
+	private TextView game_armor; // æ§ä»¶å˜é‡çš„å£°æ˜åˆ°æ­¤ç»“æŸ
 	
 	private boolean timer_thread_running = true;
 	private final int alter_time = 500;
@@ -54,45 +54,45 @@ public class GameActivity extends Activity implements OnClickListener{
 	private OneAttack one_attack;
 	private int fight_info_max_number = 50;
 	
-	// ½ÓÊÜµ½¼ÆÊ±Æ÷µÄÍ¨ÖªºóÔËĞĞÒ»´Î¹¥»÷
+	// æ¥å—åˆ°è®¡æ—¶å™¨çš„é€šçŸ¥åè¿è¡Œä¸€æ¬¡æ”»å‡»
 	private Handler handler = new Handler(){		
 		@Override
 		public void handleMessage(Message msg){
 			switch (msg.what) {
 			case 10:
 				if(new_fight){
-					// ĞÂÕ½¶·£¬¼ÆËã±¾³¡Õ½¶·µÄĞÅÏ¢£¬²¢ÏÔÊ¾ÓöµĞĞÅÏ¢
-					Log.w("MyTest", "¿ªÊ¼ÁËÒ»³¡ĞÂÕ½¶·");
+					// æ–°æˆ˜æ–—ï¼Œè®¡ç®—æœ¬åœºæˆ˜æ–—çš„ä¿¡æ¯ï¼Œå¹¶æ˜¾ç¤ºé‡æ•Œä¿¡æ¯
+					Log.w("MyTest", "å¼€å§‹äº†ä¸€åœºæ–°æˆ˜æ–—");
 					monster = new Monster();	
 					fight_info = new TextView(GameActivity.this);
 					fight_info.setTextSize(fightInfoSize);
-					fight_info.setText("ÄãÓöµ½ÁË"+monster.getName());
+					fight_info.setText("ä½ é‡åˆ°äº†"+monster.getName());
 					game_info_linearl.addView(fight_info);
-					// Log.w("My", "´«ÈëÓ¢ĞÛ£º"+hero.getName());
+					// Log.w("My", "ä¼ å…¥è‹±é›„ï¼š"+hero.getName());
 					whole_fight = new WholeFight(hero, monster);
 					whole_fight.runWholeFight();
 					new_fight = false;
-					Log.w("MyTest", "¼ÆËãÍêÁËÒ»³¡ĞÂÕ½¶·");
+					Log.w("MyTest", "è®¡ç®—å®Œäº†ä¸€åœºæ–°æˆ˜æ–—");
 				}else{
-					// Õ½¶·»¹Ã»½áÊø£¬ÏÔÊ¾±¾´Î¹¥»÷µÄĞÅÏ¢
+					// æˆ˜æ–—è¿˜æ²¡ç»“æŸï¼Œæ˜¾ç¤ºæœ¬æ¬¡æ”»å‡»çš„ä¿¡æ¯
 					if(attack_index<whole_fight.getSize()){
-						Log.w("MyTest", "¿ªÊ¼ÏÔÊ¾Ò»´Î¹¥»÷ĞÅÏ¢");
+						Log.w("MyTest", "å¼€å§‹æ˜¾ç¤ºä¸€æ¬¡æ”»å‡»ä¿¡æ¯");
 						one_attack = whole_fight.getAttack(attack_index);
 						fight_info = new TextView(GameActivity.this);
 						fight_info.setTextSize(fightInfoSize);
 						fight_info.setText(one_attack.getDescription());
 						game_info_linearl.addView(fight_info);
-						// Èç¹ûÊÇ¹ÖÊŞ¹¥»÷ÁËÓ¢ĞÛ£¬Ôò¸üĞÂUIÖĞÓ¢ĞÛµÄHPÖµ
+						// å¦‚æœæ˜¯æ€ªå…½æ”»å‡»äº†è‹±é›„ï¼Œåˆ™æ›´æ–°UIä¸­è‹±é›„çš„HPå€¼
 						if(one_attack.getAttackType()==WholeFight.m2h){
 							game_HP_value.setText(one_attack.getCurrentHeroHP()+"");
 						}
-						Log.w("MyTest", "ÏÔÊ¾ÍêÁËÒ»´Î¹¥»÷ĞÅÏ¢");
+						Log.w("MyTest", "æ˜¾ç¤ºå®Œäº†ä¸€æ¬¡æ”»å‡»ä¿¡æ¯");
 						attack_index += 1;
 					}else{
-						// Õ½¶·ÒÑ¾­½áÊø£¬¸üĞÂ½ÇÉ«×´Ì¬£¨£¬ÏÔÊ¾»ñµÃµÄÎïÆ·£©
+						// æˆ˜æ–—å·²ç»ç»“æŸï¼Œæ›´æ–°è§’è‰²çŠ¶æ€ï¼ˆï¼Œæ˜¾ç¤ºè·å¾—çš„ç‰©å“ï¼‰
 						new_fight = true;
 						attack_index = 0;
-						Log.w("MyTest", "¿ªÊ¼¸üĞÂ½ÇÉ«×´Ì¬");
+						Log.w("MyTest", "å¼€å§‹æ›´æ–°è§’è‰²çŠ¶æ€");
 						hero.setHP(hero.getMaxHP());						
 						game_level_value.setText(hero.getLevel()+"");
 						game_HP_value.setText(hero.getMaxHP()+"");
@@ -100,8 +100,8 @@ public class GameActivity extends Activity implements OnClickListener{
 						game_defence_value.setText(hero.getDefence()+"");
 						game_currentEx_value.setText(hero.getCurEx()+"");
 						game_neededEx_value.setText(hero.upLevelEx()+"");
-						Log.w("MyTest", "¸üĞÂÍêÁË½ÇÉ«×´Ì¬");
-						// ÏÔÊ¾Õ½¶·½áÊøµÄ·Ö¸ô·û
+						Log.w("MyTest", "æ›´æ–°å®Œäº†è§’è‰²çŠ¶æ€");
+						// æ˜¾ç¤ºæˆ˜æ–—ç»“æŸçš„åˆ†éš”ç¬¦
 						fight_info = new TextView(GameActivity.this);
 						fight_info.setTextSize(fightInfoSize);
 						fight_info.setText("----------");
@@ -109,11 +109,11 @@ public class GameActivity extends Activity implements OnClickListener{
 					}
 					
 				}
-                // Èç¹ûÏÔÊ¾ÁËÌ«¶àµÄÕ½¶·ĞÅÏ¢£¬ÔòÈ¥µô×îÇ°ÃæµÄÕ½¶·µÄĞÅÏ¢¡£
+                // å¦‚æœæ˜¾ç¤ºäº†å¤ªå¤šçš„æˆ˜æ–—ä¿¡æ¯ï¼Œåˆ™å»æ‰æœ€å‰é¢çš„æˆ˜æ–—çš„ä¿¡æ¯ã€‚
                 if(game_info_linearl.getChildCount()>fight_info_max_number){
                 	game_info_linearl.removeViewAt(0);
                 }
-                // ½«ĞÅÏ¢À¸À­µ½×îµ×²¿
+                // å°†ä¿¡æ¯æ æ‹‰åˆ°æœ€åº•éƒ¨
                 scrollToBottom(game_info_scroll, game_info_linearl);
 				break;
 			default:
@@ -148,9 +148,6 @@ public class GameActivity extends Activity implements OnClickListener{
 		return true;
 	}
 	
-	// Ìí¼ÓR.color.current_itemÊ±³ö´í¡£Ñ§µ½µÄ¾­Ñé£º
-	// ¼ÇµÃ±£´æ¶ÔxmlÎÄ¼şµÄĞŞ¸Ä£»Èç¹ûR.javaÎÄ¼şÃ»×Ô¶¯¸üĞÂ£¬È¡ÏûÈ»ºóÖØĞÂÑ¡Ôñ²Ëµ¥À¸ÀïµÄ¡°ÏîÄ¿¡±ÀïµÄ¡°×Ô¶¯¹¹½¨¡±
-	// ÒªÑ§»áÓÃÓ¢ÎÄ²é±à³ÌÎÊÌâ
 	@Override
 	public void onClick(View v) {
 		Log.w("myTest", ""+v.getId()+"is clicked.");
@@ -174,31 +171,31 @@ public class GameActivity extends Activity implements OnClickListener{
 	}
 	
 	/**
-	 * ±£´æÓÎÏ·Êı¾İ
+	 * ä¿å­˜æ¸¸æˆæ•°æ®
 	 */
 	private void saveGameData(){
 		return ;
 	}
 	
 	/**
-	 * ÔØÈëÓÎÏ·Êı¾İ
+	 * è½½å…¥æ¸¸æˆæ•°æ®
 	 */
 	private void loadGameData(){
 		hero = new Hero();
-		Log.w("My", "Éú³ÉÁËĞÂÓ¢ĞÛ"+hero.getName());
+		Log.w("My", "ç”Ÿæˆäº†æ–°è‹±é›„"+hero.getName());
 		initiateGameData();
 	}
 	/**
-	 * ³õÊ¼»¯ÓÎÏ·¿Ø¼ş
+	 * åˆå§‹åŒ–æ¸¸æˆæ§ä»¶
 	 */
 	private void initiateWidgets(){
 		correlateVarAndView();
 		setClickListeners();
 	}
 	
-	//¹ØÁª¹ı³ÌÊÇ·ñ¿ÉÒÔ¸ÄÁ¼£¿
+	//å…³è”è¿‡ç¨‹æ˜¯å¦å¯ä»¥æ”¹è‰¯ï¼Ÿ
 	/**
-	 * °Ñ¿Ø¼şºÍ¶ÔÓ¦µÄ±äÁ¿¹ØÁªÆğÀ´
+	 * æŠŠæ§ä»¶å’Œå¯¹åº”çš„å˜é‡å…³è”èµ·æ¥
 	 */
 	private void correlateVarAndView(){
 		game_info_scroll = (ScrollView) findViewById(R.id.game_info_scroll);
@@ -222,7 +219,7 @@ public class GameActivity extends Activity implements OnClickListener{
 	}
 	
 	/**
-	 * ÉèÖÃ¿Ø¼şµÄµã»÷ÊÂ¼ş
+	 * è®¾ç½®æ§ä»¶çš„ç‚¹å‡»äº‹ä»¶
 	 */
 	private void setClickListeners(){
 		root_character.setOnClickListener(this);
@@ -239,7 +236,7 @@ public class GameActivity extends Activity implements OnClickListener{
 	}
 
 	/**
-	 * ¼ÆÊ±Æ÷×ÓÏß³ÌÀà£¬Ã¿¹ıalter_timeÏòÖ÷Ïß³Ì·¢ËÍĞÅºÅ
+	 * è®¡æ—¶å™¨å­çº¿ç¨‹ç±»ï¼Œæ¯è¿‡alter_timeå‘ä¸»çº¿ç¨‹å‘é€ä¿¡å·
 	 */
 	private class TimerThread extends Thread{
 		@Override
@@ -256,7 +253,7 @@ public class GameActivity extends Activity implements OnClickListener{
 	}
 
 	/**
-	 * ½«Õ½¶·ĞÅÏ¢À¸À­µ½×îµ×²¿
+	 * å°†æˆ˜æ–—ä¿¡æ¯æ æ‹‰åˆ°æœ€åº•éƒ¨
 	 */
 	private void scrollToBottom(final View scroll, final View inner){
 		Handler mHandler = new Handler();
